@@ -153,7 +153,9 @@ For support, email kate.belson@hotmail.com .
 
 - [Kate Belson](https://github.com/kfb19)
 
-## Code References
+## References
+
+# The code in this repository has been based on or aided by code found in the following papers. 
 
 Al Husaini, M.A.S., Habaebi, M.H., Gunawan, T.S., Islam, M.R., Hameed, S.A.: Automatic Breast Cancer Detection Using Inception V3 in Thermography. In: 2021 8th International Conference on Computer and Communication Engineering (ICCCE), pp. 255–258 (2021). IEEE
 
@@ -169,7 +171,7 @@ Mahoro, E., Akhloufi, M.A.: Breast Cancer Classification on Thermograms Using De
 
 Nguyen, B.H., Le, B., Huynh, T., Le, H., Pham, T.H.: Breast Cancer Diagnosis Based on Detecting Lymph Node Metastases Using Deep Learning. VNUHCM Journal of Science and Technology Development 25(2), 2381–2389 (2022) https: //doi.org/10.32508/stdj.v25i2.3894
 
-Saha, A., Harowicz, M., Grimm, L., Kim, C., Ghate, S., Walsh, R., Mazurowski, M.: A Machine Learning Approach to Radiogenomics of Breast Cancer: a Study of 922 Subjects and 529 DCE-MRI Features. The British Journal of Cancer 119(4), 508–516 (2018)
+Saha, A., Harowicz, M., Grimm, L., Kim, C., Ghate, S., Walsh, R., Mazurowski, M.: A Machine Learning Approach to Radiogenomics of Breast Cancer: a Study of 922 Subjects and 529 DCE-MRI Features. The British Journal of Cancer 119(4), 508–516 (2018) 
 
 Saha, A., Harowicz, M., Grimm, L., Weng, J., Cain, E., Kim, C., Ghate, S., Walsh, R., Mazurowski, M.: Dynamic Contrast-Enhanced Magnetic Resonance Images of Breast Cancer Patients with Tumor Locations \[Dataset]. The Cancer Imaging Archive (2021)
 
