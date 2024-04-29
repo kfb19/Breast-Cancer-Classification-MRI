@@ -155,7 +155,7 @@ For support, email kate.belson@hotmail.com .
 
 ## References
 
-# The code in this repository has been based on or aided by code found in the following papers. 
+### The code in this repository has been based on or aided by code found in the following papers. 
 
 Al Husaini, M.A.S., Habaebi, M.H., Gunawan, T.S., Islam, M.R., Hameed, S.A.: Automatic Breast Cancer Detection Using Inception V3 in Thermography. In: 2021 8th International Conference on Computer and Communication Engineering (ICCCE), pp. 255–258 (2021). IEEE
 
