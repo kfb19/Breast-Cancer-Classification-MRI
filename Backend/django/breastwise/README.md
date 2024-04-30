@@ -56,41 +56,9 @@ All three folders should contain the same number of DICOM breast MRI images for 
 The response will be in the form of an array, containing information on the slices that contain cancer. For example, [10, 11, 12] would indicate the 10th, 11th and 12th slices contain a tumour. 
 ## Tech 
 
-Django, Nginx, and Gunicorn work together to create a powerful and efficient web application stack. Let's break down the roles of each component and how they interact with each other:
+Django is a high-level Python web framework that enables the rapid development of secure and maintainable websites. It follows the Model-View-Controller (MVC) architectural pattern, which allows for a clear separation of concerns between different parts of an application. Django manages the backend logic, handles database operations, and provides a templating system to generate HTML. The API has been adapted to be run with Docker. 
 
-Django is a high-level Python web framework that enables the rapid development of secure and maintainable websites. It follows the Model-View-Controller (MVC) architectural pattern, which allows for a clear separation of concerns between different parts of an application. Django manages the backend logic, handles database operations, and provides a templating system to generate HTML.
-
-Gunicorn (Green Unicorn) is a Python Web Server Gateway Interface (WSGI) HTTP server. It's a middleman between your Django application and the web server. Gunicorn is responsible for managing multiple worker processes, each of which runs an instance of your Django application. These worker processes handle incoming HTTP requests, execute the corresponding Django views, and return the response. Gunicorn makes it easier to manage the resources used by your Django application, enabling it to handle multiple requests concurrently and efficiently.
-
-Nginx (pronounced "engine-x") is a high-performance web server and reverse proxy server. As a web server, it serves static files (like images, CSS, and JavaScript) directly to the client, which reduces the load on the Django application. As a reverse proxy, it receives incoming HTTP requests from clients (e.g., web browsers) and forwards them to the appropriate Gunicorn worker processes. Nginx can also handle SSL/TLS termination, load balancing, and caching, among other features.
-
-Here's how they work together:
-
-A client sends an HTTP request to your web application.
-Nginx receives the request and checks if it's for a static file. If it is, Nginx serves the file directly. If not, it forwards the request to Gunicorn.
-Gunicorn receives the request, selects a worker process, and passes the request to the Django application running within that process.
-Django processes the request, executes the relevant view function, and generates an HTTP response.
-The response is sent back through Gunicorn and Nginx to the client.
-In summary, Django handles the application logic and database operations, Gunicorn manages the worker processes running Django instances, and Nginx serves static files and acts as a reverse proxy for handling client requests. This combination provides a scalable and efficient architecture for deploying web applications.
-
-The base image for this stage is python:3.10-buster, which is an official Python 3.10 image based on the Debian Buster distribution.
-It sets the working directory to /usr/src/app.
-Environment variables are set to disable writing bytecode files (.pyc) and to ensure unbuffered output for Python.
-The requirements.txt file is copied into the image.
-Pip, PyTorch, torchvision, torchaudio, psycopg2, Django REST framework, Django, and numpy are installed.
-The pip wheel command is used to create wheels for the packages listed in requirements.txt. These wheels are stored in the /usr/src/app/wheels directory.
-Stage 2: Final
-The final stage is responsible for setting up the final application image, which includes the installation of dependencies and copying the source code of the application.
-
-It uses the same base image as the builder stage, python:3.10-buster.
-It creates the necessary directories for the application, such as /home/app and its subdirectories.
-The working directory is set to $APP_HOME.
-The wheels and requirements.txt file from the builder stage are copied to the final stage.
-Pip, PyTorch, torchvision, torchaudio, psycopg2, Django REST framework, Django, and numpy are installed again.
-The packages in the wheels directory are installed using the pip install --no-cache /wheels/* command.
-The entrypoint.prod.sh script is copied to the image and made executable.
-The application source code is copied to the $APP_HOME directory.
-The ENTRYPOINT instruction is set to execute the entrypoint.prod.sh script when the container starts.	
+Docker is a software platform that allows developers to package and deploy applications in containers. Containers are lightweight, standalone, and executable packages that contain everything needed to run an application, including code, run-time, libraries, system tools, and settings
 
 ## Functions 
 

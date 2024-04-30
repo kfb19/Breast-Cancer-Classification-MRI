@@ -142,7 +142,7 @@ Please see the API README for more information on its specific functions.
 
 ## Tech
 
-The code was developed in Visual Studio Code. It was written in Python 3.10.7, using PyTorch 1.13.1+cu116. The API was developed in Django, using Nginx and Gunicorn to run in Docker (please view the API README file for more information). 
+The code was developed in Visual Studio Code. It was written in Python 3.10.7, using PyTorch 1.13.1+cu116. The API was developed in Django, and adapted to run in Docker (please view the API README file for more information). 
 
 ## Support
 
