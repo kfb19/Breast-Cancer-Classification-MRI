@@ -17,6 +17,8 @@ from skimage.io import imread
 from torch import nn
 from .serializers import FileSerializer
 
+# Use the GPU if it is available
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # pylint: disable=E1101
 # pylint: disable=E1102
@@ -147,7 +149,6 @@ def process_single(single_folder):
     Args:
         single_folder: the folder for the pre images
     """
-
     counter = 0
     single_bmp_path = "media/single_bmp/"
     if not os.path.exists(single_bmp_path):
@@ -164,7 +165,7 @@ def process_single(single_folder):
             img = dicom.pixel_array
 
             # Convert uint16 datatype to float, scaled properly for uint8.
-            img = img.astype(np.float) * 255. / img.max()
+            img = img.astype(np.cfloat) * 255. / img.max()
 
             # Convert from float -> uint8.
             img = img.astype(np.uint8)
@@ -224,7 +225,7 @@ def process_scantype(pass1_folder, pass2_folder, pass3_folder):
                 img = dicom.pixel_array
 
                 # Convert uint16 datatype to float, scaled properly for uint8.
-                img = img.astype(np.float) * 255. / img.max()
+                img = img.astype(np.cfloat) * 255. / img.max()
 
                 # Convert from float -> uint8.
                 img = img.astype(np.uint8)
@@ -289,7 +290,7 @@ def analyse_single():
                 (128, 128))(data_tensor)
             # Run through net & append results to results
             checkpoint = torch.load("nets/vgg_single_pretrained.pth",
-                                    map_location=torch.device('cpu'))
+                                    map_location=torch.device(device))
 
             # Define the convoluted neural network.
             net = vgg19(weights=VGG19_Weights.IMAGENET1K_V1)
@@ -357,7 +358,7 @@ def analyse_scantype():
 
         # Run through net & append results to results
         checkpoint = torch.load("nets/vgg_scantype.pth",
-                                map_location=torch.device('cpu'))
+                                map_location=torch.device(device))
 
         # Define the convoluted neural network.
         net = vgg19(weights=None)

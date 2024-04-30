@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.core.management.utils import get_random_secret_key
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,14 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = get_random_secret_key()
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
 X_FRAME_OPTIONS = 'DENY'
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://*.breast-wise.co.uk',
-                        'http://localhost:1337', 'http://127.0.0.1:1337']
+                        'http://localhost:8000', 'http://127.0.0.1:8000']
 
 
 # Application definition

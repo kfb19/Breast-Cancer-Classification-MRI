@@ -8,4 +8,3 @@ from django.contrib.postgres.fields import ArrayField
 class File(models.Model):
     """ Model for the scan results. """
     file = models.FileField(blank=False, null=False)
-
