@@ -5,22 +5,44 @@ BreastWise API is a Django application for the detection of Breast Cancer in MRI
     
 ## Run Locally
 
-Go to the project directory. 
+Install Docker. 
+
+Run this command to run the API in Docker. 
+
+Due to the use of machine learning models, a GPU is recommended. If you use a GPU, ensure that you have NVIDIA toolkit installed on your machine. If you do not want to use a GPU, simply skip this step.
 
 ```bash
-  cd breastwise
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+sudo apt-get update
+sudo apt-get install -y nvidia-container-toolkit
 ```
 
-Add your secret key to .env.prod by generating a string of length 50 at this site: http://www.unit-conversion.info/texttools/random-string-generator/
-
-Run this command to run the API in docker. 
+Pull the Docker image for this code. Please note that this might take some time, depending on your internet connection - it is a large file. 
 
 ```bash
-  docker-compose -f docker-compose.yml up -d --build
+  # Pull the Docker image
+  docker pull katebelson05/breastwise:v1.0.0
 
 ```
 
-Requests can then be made to the upload endpoint at 127.0.0.1:8000/upload/ .
+Next, choose the appropriate run command, depending on whether you are running the image with or without a GPU. 
+
+  ```bash
+
+  # Run the Docker image (with GPU)
+  docker run --gpus "device=0" -p 8000:8000 katebelson05/breastwise:v1.0.0
+
+  # Run the Docker image (without GPU)
+  docker run -p 8000:8000 katebelson05/breastwise:v1.0.0
+
+
+```
+
+Requests can then be made to the upload endpoint at localhost:8000/upload/ .
 
 ## Usage/Examples
 
